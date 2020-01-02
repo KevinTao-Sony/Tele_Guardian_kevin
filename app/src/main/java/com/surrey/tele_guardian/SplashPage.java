@@ -1,15 +1,13 @@
 package com.surrey.tele_guardian;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
@@ -43,7 +41,7 @@ public class SplashPage extends AppCompatActivity {
             try {
                 BufferedReader reader = null;
                 //todo replace with shivs address
-                URL url = new URL("http://10.77.90.236:3000/users/login"); //in the real code, there is an ip and a port
+                URL url = new URL("http://10.77.104.212:3000/users/login"); //in the real code, there is an ip and a port
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");

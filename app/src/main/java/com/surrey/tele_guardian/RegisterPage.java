@@ -1,7 +1,5 @@
 package com.surrey.tele_guardian;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.animation.Animator;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
@@ -135,7 +136,7 @@ public class RegisterPage extends AppCompatActivity {
             try {
                 BufferedReader reader = null;
                 //todo replace with shivs address
-                URL url = new URL("http://10.77.90.236:3000/users/register"); //in the real code, there is an ip and a port
+                URL url = new URL("http://10.77.104.212:3000/users/register"); //in the real code, there is an ip and a port
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");

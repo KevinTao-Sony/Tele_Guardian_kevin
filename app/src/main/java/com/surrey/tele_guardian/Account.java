@@ -1,7 +1,5 @@
 package com.surrey.tele_guardian;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,10 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -125,7 +124,7 @@ public class Account extends AppCompatActivity {
                 //todo replace with shivs address
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(Account.this);
                 String token = sharedPreferences.getString("token", "");
-                URL url = new URL("http://10.77.90.236:3000/users/"+token); //in the real code, there is an ip and a port
+                URL url = new URL("http://10.77.104.212:3000/users/"+token); //in the real code, there is an ip and a port
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Content-Type", "application/json");

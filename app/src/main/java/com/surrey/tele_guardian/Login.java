@@ -1,10 +1,5 @@
 package com.surrey.tele_guardian;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.animation.Animator;
 import android.content.Intent;
@@ -26,11 +21,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -168,7 +167,7 @@ public class Login extends AppCompatActivity {
 
 
                 //todo replace with shivs address
-                URL url = new URL("http://10.77.90.236:3000/users/login"); //in the real code, there is an ip and a port
+                URL url = new URL("http://10.77.104.212:3000/users/login"); //in the real code, there is an ip and a port
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");

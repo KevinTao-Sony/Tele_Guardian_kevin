@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "354830057821",
+    "firebase_url": "https://teleguardian-9e6e2.firebaseio.com",
+    "project_id": "teleguardian-9e6e2",
+    "storage_bucket": "teleguardian-9e6e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354830057821:android:bdcad47917cdf62f7a28b4",
+        "android_client_info": {
+          "package_name": "com.surrey.tele_guardian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354830057821-t3733r7327f72n3fl1vb5jsljh9itss3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.surrey.tele_guardian",
+            "certificate_hash": "a8de7ca7e117a986ef0b39046b473b420345a99b"
+          }
+        },
+        {
+          "client_id": "354830057821-ne5bo9o6ar37ljnj5qg31dj9caige6jb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTy0SQr0owjPvlsP5cySTsMRHYoEmV018"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354830057821-ne5bo9o6ar37ljnj5qg31dj9caige6jb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

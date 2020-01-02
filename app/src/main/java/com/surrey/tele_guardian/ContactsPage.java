@@ -1,15 +1,10 @@
 package com.surrey.tele_guardian;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,7 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.location.Location;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,6 +59,8 @@ public class ContactsPage extends AppCompatActivity {
     JSONObject obj;
 
     private FusedLocationProviderClient client;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +147,7 @@ public class ContactsPage extends AppCompatActivity {
                                     Log.d("json", obj.toString());
                                     contacts.add(obj);
                                     //new ContactsRequest().execute("post",name,phoneNumber,obj.get("EMAIL").toString());
-
+                                    ((App) getApplication()).getArrayList("contacts");
                                     saveArrayList(contacts, "contacts");
                                     loadPage();
                                 } catch (JSONException e) {
@@ -165,6 +164,7 @@ public class ContactsPage extends AppCompatActivity {
         }
     }
     private void loadPage() throws JSONException {
+
         final LinearLayout main_layer = findViewById(R.id.linearLayout);
         main_layer.removeAllViews();
         Log.i("obj",contacts.toString());
@@ -206,8 +206,6 @@ public class ContactsPage extends AppCompatActivity {
                             public void onSuccess(Object o) {
                                 String location = o.toString().split("fused ")[1];
                                 String location_Split = location.split(" hAcc")[0];
-                                SmsManager smsManager = SmsManager.getDefault();
-                                smsManager.sendTextMessage(number, null, "Please check on me, I have not responded to panic button, I was recently at " + location, null, null);
                                 final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ContactsPage.this);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("location", location_Split);
@@ -312,7 +310,7 @@ public class ContactsPage extends AppCompatActivity {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ContactsPage.this);
                 String token = sharedPreferences.getString("token", "");
                 //todo replace with shivs address
-                URL url = new URL("http://10.77.90.236:3000/users/" + token+"/contacts"); //in the real code, there is an ip and a port
+                URL url = new URL("http://10.77.104.212:3000/users/" + token+"/contacts"); //in the real code, there is an ip and a port
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");
