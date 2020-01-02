@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainrootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSplashText"
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@id/icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@null"
+        android:src="@drawable/icon" />
+
+    <RelativeLayout
+        android:id="@+id/mainmenu"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="335dp"
+            android:layout_height="164dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="39dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/logo" />
+        <ImageView
+            android:id="@id/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@null"
+            android:src="@drawable/icon" />
+        <Button
+            android:background="@drawable/round_button_state"
+            android:id="@+id/account_info"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="200dp"
+            android:text="Account"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <Button
+            android:background="@drawable/round_button_state"
+            android:id="@+id/Contact_Page"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="300dp"
+            android:text="Contact Page"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <Button
+            android:background="@drawable/round_button_state"
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="400dp"
+            android:text="Settings"
+            tools:layout_editor_absoluteX="16dp" />
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:id="@+id/batterylevel"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="600dp"
+            android:progress="50"
+            tools:layout_editor_absoluteX="16dp"
+            android:indeterminate="false"/>
+        <TextView
+            android:id="@+id/batterylevel_text"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="168dp"
+            android:layout_marginTop="550dp"
+            android:gravity="center"
+            android:progress="90"
+            android:text="Battery level"/>
+    </RelativeLayout>
+</RelativeLayout>
