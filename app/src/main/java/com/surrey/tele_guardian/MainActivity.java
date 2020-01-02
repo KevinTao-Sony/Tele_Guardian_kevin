@@ -8,7 +8,9 @@ import androidx.core.app.NotificationManagerCompat;
 import android.animation.Animator;
 import android.app.Notification;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.Button;
@@ -18,13 +20,17 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private TextView textView;
-
+    public FusedLocationProviderClient client;
     ImageView icon;
     RelativeLayout layout;
 
@@ -73,6 +79,22 @@ public class MainActivity extends AppCompatActivity {
         battery(50);
 
         startAnimation();
+
+        client = LocationServices.getFusedLocationProviderClient(MainActivity.this);
+
+        client.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                String location = o.toString().split("fused ")[1];
+                String location_Split = location.split(" hAcc")[0];
+                final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("location", location_Split);
+                editor.apply();
+
+            }
+
+        });
     }
 
     private void startAnimation() {
@@ -103,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         ((App) getApplication()).mainActivityOpen();
         boolean status = ((App) getApplication()).getBatteryLevel();
     }
@@ -112,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         ((App) getApplication()).mainActivityClosed();
     }
+
 
     public void battery(int progress){
         int batteryLevel = (progress * 75) / 10;

@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -42,9 +43,10 @@ public class App extends Application {
     public static final String CHANNEL_LOW_ID = "LowChannel";
     public String mDeviceAddress = null;
     public BluetoothLeService mBluetoothLeService = null;
+    public MainActivity mainActivity = null;
     public ArrayList<JSONObject> contacts = new ArrayList<>();
     private NotificationManagerCompat notificationManager;
-
+    SharedPreferences prefs ;
     public void mainActivityOpen() {
         if (mBluetoothLeService != null) {
             String s = "O";
@@ -91,25 +93,16 @@ public class App extends Application {
         return mBluetoothLeService;
     }
 
-    public void getLocation() {
-        client = LocationServices.getFusedLocationProviderClient(this);
-
-        client.getLastLocation().addOnSuccessListener((Executor) this, new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-                String location = o.toString().split("fused ")[1];
-                String location_Split = location.split(" hAcc")[0];
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("location", location_Split);
-                editor.apply();
-            }
-
-        });
+    public MainActivity getMainActivity() {
+        return mainActivity;
     }
 
     public void setBluetoothLeService(BluetoothLeService bluetoothLeService) {
         this.mBluetoothLeService = bluetoothLeService;
+    }
+
+    public void setMainActivity(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
     }
 
     public void getDeviceCharacteristic() {
@@ -121,7 +114,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(App.this);
+        String longandlat = sharedPreferences.getString("location","");
         contacts = getArrayList("contacts");
+
+        Log.i("location",longandlat);
         createNotificationChannels();
         notificationManager = NotificationManagerCompat.from(this);
         IntentFilter filter = new IntentFilter("com.example.bluetooth.le.ACTION_DATA_AVAILABLE");
@@ -195,7 +192,7 @@ public class App extends Application {
                     break;
                 case 'P':
                     Log.d(TAG, "Panic button pressed.");
-                    getLocation();
+
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(App.this);
                     String longandlat = sharedPreferences.getString("location","");
                     String locationTXT = "I have not responded to the panic button, i was recently at " + longandlat;
